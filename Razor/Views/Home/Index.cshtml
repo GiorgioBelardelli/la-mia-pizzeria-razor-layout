@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    string nome = "Giorgio";
+    string cognome = "Belardelli";
+    string frase = "nel mezzo del cammin di nostra vita";
+}
+
+<div class="text-center">
+    <h1>Es.1</h1>
+    <h2 class="display-4">@nome @cognome</h2>
+    <br />
+
+    <h1>Es.2</h1>
+    @functions {
+        public int Somma(int n)
+        {
+            int somma = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                somma += i;
+            }
+            return somma; 
+        }
+    }
+    <span>@Somma(7)</span>
+    <br />
+
+    <h1>Es.3</h1>
+    <span>@frase.Count(c => c == 'a') Iterazioni della lettera a nella frase:  @frase.</span>
+    <br />
+    
+    <h1>Es.4</h1>
+    @{
+        List<int> NumeriRandom = new List<int>();
+        Random rng = new Random();
+
+        for (int i = 0; i < 20; i++)
+        {
+            int numRandom = rng.Next(1, 91);
+            NumeriRandom.Add(numRandom);   
+        }
+        var filtro = NumeriRandom.Where(n => n >= 20 && n <= 70).ToList();
+    }
+    <ul>
+        @foreach (var numero in filtro)
+        {
+            <li>@numero</li>
+        }
+    </ul>
+    <br />
+
+    <h1>Es.5</h1>
+    <span>@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span>
+    <br />
+
+    <h1>Es.6</h1>
+    @{
+        DateTime DataOggi = DateTime.Now;
+        DateTime DataPassata = DataOggi.AddDays(-7);
+        DateTime DataFutura = DataOggi.AddDays(365);
+
+        string Oggi = DataOggi.ToString("dddd");
+        string OggiTraUnAnno = DataFutura.ToString("dddd");
+    }
+    <span>La data di 7 giorni fa: @DataPassata<span/>
+    <br />
+    <span>Oggi é: @Oggi<span/>
+    <br />
+    <span>Tra un anno sará il giorno: @OggiTraUnAnno<span/>
+    <br />
+
+
+</div>
